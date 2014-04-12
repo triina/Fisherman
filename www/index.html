@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Fishing app</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        
+        <script src="js/libs/jquery/jquery.min.js" type="text/javascript"></script>
+        <script src="js/libs/zrssfeed-120/jquery.zrssfeed.min.js" type="text/javascript"></script>
+        <script src="js/libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+        <link href="js/libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css"/>
+            <script type="text/javascript">
+            $(document).ready(function () {
+
+            //Getting rss feeds for the news page
+            $('#firstRSS').rssfeed('http://www.fishinginfinland.fi/rssevents_en.xml', {
+                limit: 5
+            });
+              $('#secondRSS').rssfeed('http://www.fishingteamkalu.fi/feed/', {
+                limit: 3
+            });
+              $('#thirdRSS').rssfeed('http://kuhanvetasen.com/?feed=rss2', {
+                limit: 3
+            });
+            
+             //Getting the twitter search results for fishing Finland
+             //DOES NOT WORK MOST OF THE TIME
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+            
+            });
+            
+            </script>
+
+    </head>
+   
+    
+    <body>
+        
+        
+        <!--FIRST PAGE-->
+        <div data-role="page" id="home">
+                <div data-role="header">
+                    <h1>Fish for fun!</h1> <!--title bar-->
+                </div>
+                 <div class="ui-content" role="main">
+                     <a href="#newcatch" class="ui-btn">New catch</a>
+                     <a href="#allcatches" class="ui-btn">All catches</a>
+                     <a href="#news" class="ui-btn">Live news</a>
+
+                 </div>
+        </div>
+        
+        
+        <!--SECOND PAGE-->
+        <div data-role="page" id="newcatch">
+                <div data-role="header">
+                    <h1>Fish for fun!</h1> <!--title bar-->
+                </div>
+                <div class="ui-content" role="main">
+                 <!--Here will be the input-->
+                </div>
+             <div data-role="footer"  data-position="fixed">
+                <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
+                <a href="#allcatches" data-role="button" data-icon="arrow-r">All catches</a>
+                <a href="#news" data-role="button">Live news</a>     
+            </div>
+        </div>
+        
+        
+        
+        <!--THIRD PAGE-->
+        <div data-role="page" id="allcatches">
+                <div data-role="header">
+                    <h1>Fish for fun!</h1> <!--title bar-->
+                </div>
+                <div class="ui-content" role="main">
+                <h1>Here we shall have the list and a link to details view</h1>
+                </div>
+                <div data-role="footer"  data-position="fixed">
+                <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
+                <a href="#newcatch" data-role="button" data-icon="check">New catch</a>
+                <a href="#news" data-role="button">Live news</a>     
+                </div>
+        </div>
+        
+        
+        
+        <!--FOURTH PAGE-->
+         <div data-role="page" id="news">
+            <div data-role="header">
+                <h1>Fish for fun!</h1> <!--title bar-->
+            </div>
+            <div class="ui-content" role="main">
+         
+                    <div data-role="collapsible-set" data-theme="c" data-content-theme="d">
+                        <div data-role="collapsible" > <!--this icon of plus sign is provided by default but could be overridden like this data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"-->
+                            <h3>Fishing events</h3>
+                            <p id ="firstRSS"></p>
+                        </div>
+                        <div data-role="collapsible">
+                            <h3>Kalu fishing team</h3>
+                            <p id ="secondRSS"></p>
+                        </div>
+                        <div data-role="collapsible">
+                            <h3>Kuhan Vetäsen fishing team</h3>
+                            <p id ="thirdRSS"></p>
+                        </div>   
+                        <div data-role="collapsible">
+                            <h3>Fishing buzz in Finland</h3>
+                            <!--here is the half-functioning twitter thing-->
+                            <a class="twitter-timeline" href="https://twitter.com/search?q=fishing+Finland" data-widget-id="454619011217502209">Tweets about "fishing Finland"</a>
+                 
+                            
+                        </div> 
+                    </div>
+            </div>  
+            <div data-role="footer"  data-position="fixed">
+                <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
+                    <a href="#newcatch" data-role="button" data-icon="check">New catch</a>
+                     <a href="#allcatches" data-role="button" data-icon="arrow-r">All catches</a>
+            </div>
+         </div>
+    </body>
+</html>
