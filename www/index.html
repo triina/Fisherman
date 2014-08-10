@@ -3,6 +3,7 @@
 <html>
     <head>
         <title>Fishing app</title>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <script src="js/forData.js" type="text/javascript"></script>
@@ -10,6 +11,7 @@
         <script src="js/libs/zrssfeed-120/jquery.zrssfeed.min.js" type="text/javascript"></script>
         <script src="js/libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
         <link href="js/libs/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" rel="stylesheet" type="text/css"/>
+
 
 
         <script type="text/javascript">
@@ -26,18 +28,6 @@
                     limit: 3
                 });
 
-                //Getting the twitter search results for fishing Finland
-                //DOES NOT WORK MOST OF THE TIME
-                !function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                    if (!d.getElementById(id)) {
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = p + "://platform.twitter.com/widgets.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }
-                }(document, "script", "twitter-wjs");
-
             });
 
         </script>
@@ -47,6 +37,7 @@
                 persistData(weight, description, date);
             }
         </script>
+
     </head>
 
     <body>
@@ -57,11 +48,11 @@
             <div data-role="header">
                 <h1>Fish for fun!</h1> <!--title bar-->
             </div>
-
             <div class="ui-content" role="main">
-                <a href="#newcatch" class="ui-btn">New catch</a>
-                <a href="#allcatches" class="ui-btn">All catches</a>
-                <a href="#news" class="ui-btn">Live news</a>
+                <a href="#newcatch" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">New catch</a>
+                <a href="#allcatches" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-arrow-r">All catches</a>
+                <a href="#news" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-comment">Live news</a>
+                <a href="#settings" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-gear">Settings</a>
 
             </div>
         </div>
@@ -76,13 +67,20 @@
 
             <form id="newCatchForm" action ="" method="GET">
                 <label for="slider-fill">Weight in grams:</label>
-                <input type="range" name="slider-fill" id="weight" value="0" min="0" max="15000" data-highlight="true">
+                <input type="range" name="slider-fill" id="weight" min="0" max="15000" data-highlight="true">
                 <label for="text-basic">Description:</label>
-                <input type="text" name="text-basic" id="description" value="">
+                <textarea id="description"></textarea>
                 <label for="date">Date:</label>
                 <input type="date" name="date" id="date" value="">
-                <input class="ui-btn" value="Save catch" onclick="persistData(this.form)">
+
+                <input class="ui-btn ui-btn-b" value="Save catch" onclick="persistData(this.form)">
             </form>
+            <div data-role="popup" id="savedPopup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+                Your catch has been saved  
+            <a href="#newcatch" data-role="button" data-icon="check">OK</a>
+				</div>
+            
+            
             <div data-role="footer"  data-position="fixed">
                 <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
                 <a href="#allcatches" data-role="button" data-icon="arrow-r">All catches</a>
@@ -98,14 +96,25 @@
                 <h1>Fish for fun!</h1> <!--title bar-->
             </div>
             <div class="ui-content" role="main">
-                <div id="catchesList"></div>
-            </div>
+
+                    <table  data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Choose info to view" data-column-popup-theme="a">
+                        <thead>
+                        <th data-priority="1">Weight (gr)</th>
+                        <th data-priority="3">Description</th>
+                        <th data-priority="2">Date</th>
+                        </thead>
+                        <tbody id="catchesList"></tbody>
+                    </table>
+
+
+                </div>
+
             <div data-role="footer"  data-position="fixed">
                 <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
                 <a href="#newcatch" data-role="button" data-icon="check">New catch</a>
                 <a href="#news" data-role="button">Live news</a>     
             </div>
-        </div>
+ </div>
 
 
 
@@ -129,20 +138,34 @@
                         <h3>Kuhan Vetäsen fishing team</h3>
                         <p id ="thirdRSS"></p>
                     </div>   
-                    <div data-role="collapsible">
-                        <h3>Fishing buzz in Finland</h3>
-                        <!--here is the half-functioning twitter thing-->
-                        <a class="twitter-timeline" href="https://twitter.com/search?q=fishing+Finland" data-widget-id="454619011217502209">Tweets about "fishing Finland"</a>            
-                    </div> 
                 </div>
             </div>  
-        </div>
+        
         <div data-role="footer"  data-position="fixed">
             <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
             <a href="#newcatch" data-role="button" data-icon="check">New catch</a>
             <a href="#allcatches" data-role="button" data-icon="arrow-r">All catches</a>
         </div>  
+</div>
+        
+                <!--FIFTH PAGE-->
+        <div data-role="page" id="settings">
+            <div data-role="header">
+                <h1>Fish for fun!</h1> <!--title bar-->
+            </div>
+            <div class="ui-content" role="main">
 
+              If you are absolutely sure you don´t need your fishing data any more delete all catches here.
+              <button class="ui-btn ui-icon-delete" onclick="dropDb">Delete everything</button>
+            </div>  
+        
+        <div data-role="footer"  data-position="fixed">
+            <a href="#home" data-role="button" data-icon="home">&nbsp;</a>
+            <a href="#newcatch" data-role="button" data-icon="check">New catch</a>
+            <a href="#allcatches" data-role="button" data-icon="arrow-r">All catches</a>
+        </div>  
+</div>
+        
         <script>
             function persistData(weight, description, date) {
                 // get form entries
@@ -150,10 +173,10 @@
                 var weight = form.weight.value;
                 var description = form.description.value;
                 var date = form.date.value;
-                // set value if input was blank
-                //if (weight === "undefined") { weight = "" }; 
-                //if (description === "undefined") { description = "" };
-                //if (date === "undefined") { date = "" };
+                //set value if input was blank
+                if (weight === "") { weight = "No weight" }; 
+                if (description === "") { description = "No description" };
+                if (date === "") { date = "No date" };
                 // check form entries on console
                 console.log("weight = " + weight);
                 console.log("description = " + description);
@@ -205,13 +228,14 @@
                     // Display the query results as a table within <div id="catchesList"></div>
                     for (var i = 0; i < len; i++){
                      var rowid = results.rows.item(i).id;
-                    document.getElementById("catchesList").innerHTML += "<table><tr><td><button class='buttonDel' onclick='delRecord(\"" + rowid + "\")' value='Delete'>Delete</button><br>" + results.rows.item(i).id + "</td><td>" + results.rows.item(i).data1 + "</td><td>" + results.rows.item(i).data2 + "</td><td>" + results.rows.item(i).data3 + "</td></tr></table>";
+                    document.getElementById("catchesList").innerHTML += "<tr><td>" + results.rows.item(i).data1 + "</td><td>" + results.rows.item(i).data2 + "</td><td>" + results.rows.item(i).data3 +"<td><button class='ui-btn ui-icon-delete' onclick='delRecord(\"" + rowid + "\")' value='Delete'>Delete</button></td></tr>";
                     console.log("rowid = " + rowid);}
-                // reset form input fields to blank
-                //var form = document.getElementById("newCatchForm");
-                //form.weight.value = "0";
-                //form.description.value = "";
-                //form.date.value = ""; 
+  // reset form input fields to blank
+                $("#weight").val(null).slider("refresh");
+                $("#description").val(null);
+                $("#date").val(null);
+//show a popup that the save was successful
+                $('#savedPopup').popup("open");
             }
 
             // Show DB onload (next two functions)
@@ -233,11 +257,11 @@
                             tx.executeSql("DELETE FROM FISHING WHERE id = ?", [rowid]);
                         }
                 );
-                document.getElementById("output").innerHTML = "";
                 document.getElementById("catchesList").innerHTML = "";
                 location.reload(false); // refresh page to show changes
             }
 
+ 
             // Transaction success callback
 
             function successCB() {
@@ -278,6 +302,7 @@
 
             function dropDb() {
                 // erase localStorage
+                console.log("here")
                 window.localStorage.clear();
                 // erase form fields
                 var form = document.getElementById("newCatchForm");

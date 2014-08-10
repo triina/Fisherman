@@ -22,6 +22,7 @@ C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\andro
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\js \
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\plugins \
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\css\index.css \
+C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\img\icon.png \
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\js\index.js \
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\js\libs \
 C:\Users\Riina\Google Drive\Documents\NetBeansProjects\Fisherman\platforms\android\assets\www\js\libs\jquery \
